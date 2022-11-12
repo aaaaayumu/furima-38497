@@ -14,7 +14,7 @@ class Item < ApplicationRecord
             numericality: { other_than: 1, message: "can't be blank" }
   validates :price,
             numericality: {
-              greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'は(￥300~9,999,999)で入力してください'
+              greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true, message: 'は(￥300~9,999,999)で入力してください'
             },
             if: :price_errors_blank?
   validates :image, presence: true, blob: { content_type: :image }
