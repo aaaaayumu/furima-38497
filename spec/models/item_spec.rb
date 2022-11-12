@@ -72,6 +72,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price は(￥300~9,999,999)で入力してください'
       end
+      it 'priceが小数を含むと出品できない' do
+        @item.price = 1500.8
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price は(￥300~9,999,999)で入力してください'
+      end
       it 'userが紐づいていないと出品できない' do
         @item.user = nil
         @item.valid?
