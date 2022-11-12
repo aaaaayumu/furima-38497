@@ -7,7 +7,7 @@ FactoryBot.define do
     shipping_fee_status { ShippingFeeStatus.where.not(id: 1).sample }
     prefecture { Prefecture.where.not(id: 1).sample }
     scheduled_delivery { ScheduledDelivery.where.not(id: 1).sample }
-    price { Faker::Number.between(from: 300, to: 9999999)}
+    price { Faker::Number.between(from: 300, to: 9_999_999) }
     association :user
 
     after(:build) do |item|

@@ -60,22 +60,22 @@ RSpec.describe Item, type: :model do
       it 'priceが全角数値だと出品できない' do
         @item.price = '１００００'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price は(￥300~9,999,999)で入力してください"
+        expect(@item.errors.full_messages).to include 'Price は(￥300~9,999,999)で入力してください'
       end
       it 'priceが300より小さいと出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price は(￥300~9,999,999)で入力してください"
+        expect(@item.errors.full_messages).to include 'Price は(￥300~9,999,999)で入力してください'
       end
       it 'priceが9999999より大きいと出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price は(￥300~9,999,999)で入力してください"
+        expect(@item.errors.full_messages).to include 'Price は(￥300~9,999,999)で入力してください'
       end
       it 'userが紐づいていないと出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include "User must exist"
+        expect(@item.errors.full_messages).to include 'User must exist'
       end
     end
   end
