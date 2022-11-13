@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :move_to_root, only: :edit
   before_action :set_item, only: [:show, :edit, :update]
-
+  before_action :move_to_root, only: :edit
+  
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -48,8 +48,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_root
-    return if current_user.id == Item.find(params[:id]).user.id
-
-    redirect_to root_path
+    return redirect_to root_path if current_user.id != @item.user.id
   end
 end
