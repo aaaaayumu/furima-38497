@@ -8,7 +8,7 @@ class OrderShippingAddress
             format: { with: /\A\d{3}-\d{4}\z/, message: 'は3桁-4桁で入力してください' },
             if: :postcode_errors_blank?
   validates :phone_number,
-            format: { with: /\A\d{10,11}\z/, message: 'は半角数字のみで入力してください'},
+            format: { with: /\A\d{10,11}\z/, message: 'は10桁もしくは11桁の半角数字で入力してください'},
             if: :phone_number_errors_blank?
 
   def save
