@@ -8,15 +8,15 @@ class OrderShippingAddress
             format: { with: /\A\d{3}-\d{4}\z/, message: 'は3桁-4桁で入力してください' },
             if: :postcode_errors_blank?
   validates :phone_number,
-            format: { with: /\A\d{10,11}\z/, message: 'は10桁もしくは11桁の半角数字で入力してください'},
+            format: { with: /\A\d{10,11}\z/, message: 'は10桁もしくは11桁の半角数字で入力してください' },
             if: :phone_number_errors_blank?
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
     ShippingAddress.create(
-                          postcode: postcode, prefecture_id: prefecture_id, city: city, address: address,
-                          building: building, phone_number: phone_number, order_id: order.id
-                          )
+      postcode: postcode, prefecture_id: prefecture_id, city: city, address: address,
+      building: building, phone_number: phone_number, order_id: order.id
+    )
   end
 
   def postcode_errors_blank?
