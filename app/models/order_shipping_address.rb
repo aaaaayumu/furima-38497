@@ -1,8 +1,8 @@
 class OrderShippingAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :city, :address, :building, :phone_number
+  attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :city, :address, :building, :phone_number, :token
 
-  validates :user_id, :item_id, :postcode, :city, :address, :phone_number, presence: true
+  validates :user_id, :item_id, :token, :postcode, :city, :address, :phone_number, presence: true
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :postcode,
             format: { with: /\A\d{3}-\d{4}\z/, message: 'は3桁-4桁で入力してください' },
